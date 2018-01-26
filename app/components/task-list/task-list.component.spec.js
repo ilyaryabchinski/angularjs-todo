@@ -13,8 +13,8 @@ describe('taskList', function() {
         ctrl = $componentController('taskList');
       }));
   
-      it('should create a 2 tasks', function() {
-        expect(ctrl.phones.length).toBe(2);
+      it('should create 2 tasks', function() {
+        expect(ctrl.tasks.length).toBe(2);
       });
   
       it('should set a default value for the `orderProp` model', function() {

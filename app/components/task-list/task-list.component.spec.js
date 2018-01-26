@@ -13,6 +13,7 @@ describe('taskList', function() {
         ctrl = $componentController('taskList');
       }));
   
+      
       it('should create 2 tasks', function() {
         expect(ctrl.tasks.length).toBe(2);
       });

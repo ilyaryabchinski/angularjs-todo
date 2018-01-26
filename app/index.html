@@ -17,15 +17,16 @@
   <link rel="stylesheet" href="app.css">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="bower_components/Font-Awesome/css/font-awesome.css">
+
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-loader/angular-loader.js"></script>
   <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-  <script src="app.js"></script>
   <script src="core/task.module.js"></script>
   <script src="core/task.service.js"></script>
   <script src="components/task-list/task-list.module.js"></script>
   <script src="components/task-list/task-list.component.js"></script>
+  <script src="app.js"></script>
   <script src="bower_components/jQuery/dist/jquery.slim.min.js"></script>
   <script src="bower_components/popper.js/dist/umd/popper.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -33,7 +34,7 @@
 
 </head>
 
-<body ng-controller="TasksController" class="alpha-60">
+<body class="alpha-60">
   <div class="container">
     <div class="row">
       <nav class="navbar navbar-dark bg-dark col-12">
@@ -82,9 +83,12 @@
             </p>
           </li>
       </div>
-      <div class="view-container">
+
+      <task-list></task-list>
+
+      <!-- <div class="view-container">
         <div ng-view class="view-frame"></div>
-      </div>
+      </div> -->
 
     </div>
 

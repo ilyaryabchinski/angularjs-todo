@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Build an AngularJS app", 
+        "description": "Practice!", 
+        "deadline": "2017-02-01",
+        "isDone": false 
+    }, 
+    {
+        "title": "Buy a new T-Shirt", 
+        "description": "My old T-shirts are old-fashioned", 
+        "deadline": "2017-03-01",
+        "isDone": false
+    }
+]

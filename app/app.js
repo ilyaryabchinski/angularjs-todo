@@ -3,14 +3,18 @@
 // Declare app level module which depends on views, and components
 angular.module('tasksApp', [
   'ngRoute',
-  'tasksApp.view1',
-  'tasksApp.view2',
-  'tasksApp.version'
+  'core.task',
+  'taskList'
 ]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]).controller("TasksController", function ($scope){
-  $scope.name = "Ilya";
-});
+  $routeProvider.
+  when('/tasks', {
+    template: '<task-list></task-list>'
+  })
+  // .when('/tasks/:phoneId', {
+  //   template: '<phone-detail></phone-detail>'
+  // })
+  .otherwise('/tasks');
+}]);

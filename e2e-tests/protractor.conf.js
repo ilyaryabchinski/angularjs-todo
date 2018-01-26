@@ -1,3 +1,5 @@
+'use strict';
+
 //jshint strict: false
 exports.config = {
 

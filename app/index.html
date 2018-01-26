@@ -17,10 +17,21 @@
   <link rel="stylesheet" href="app.css">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="bower_components/Font-Awesome/css/font-awesome.css">
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="core/task.module.js"></script>
+  <script src="core/task.service.js"></script>
+  <script src="components/task-list/task-list.module.js"></script>
+  <script src="components/task-list/task-list.component.js"></script>
+  <script src="bower_components/jQuery/dist/jquery.slim.min.js"></script>
+  <script src="bower_components/popper.js/dist/umd/popper.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
 </head>
 
-<body ng-controller="TasksController">
+<body ng-controller="TasksController" class="alpha-60">
   <div class="container">
     <div class="row">
       <nav class="navbar navbar-dark bg-dark col-12">
@@ -28,6 +39,10 @@
           <i class="fa fa-check" aria-hidden="true"></i>
           AnotherOneToDoApp
         </a>
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" ng-model="$ctrl.query">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled>Search</button>
+        </form>
       </nav>
     </div>
 
@@ -39,88 +54,42 @@
       <div class="sidebar col-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="trigger info-color text-white">Add
+            <a href="#" class="btn btn-secondary btn-lg active bg-dark" role="button" aria-pressed="true">New Task
               <i class="fa fa-plus ml-2"></i>
             </a>
           </li>
-          <hr />
           <li class="nav-item">
-            <a class="trigger warning-color text-white">Delete All
+            <a href="#" class="btn btn-secondary btn-lg active bg-dark mt-3" role="button" aria-pressed="true">Delete All
               <i class="fa fa-trash ml-2"></i>
             </a>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="btn btn-secondary btn-lg active bg-dark mt-3" role="button" aria-pressed="true">All Done
+              <i class="fa fa-check ml-2"></i>
+            </a>
+            </a>
+          </li>
+          <li>
+            <p class="mt-3">
+              Sort by:
+              <select ng-model="$ctrl.orderProp" ng-model="$ctrl.orderProp">
+                <option value="title">Alphabetical</option>
+                <option value="deadline">Newest</option>
+              </select>
+            </p>
           </li>
       </div>
-
-      <div class="cards col-9">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-4">
-              <div class="card text-center">
-                <div class="card-header">
-                  Featured
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="card text-center">
-                <div class="card-header">
-                  Featured
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="card text-center">
-                <div class="card-header">
-                  Featured
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="view-container">
+        <div ng-view class="view-frame"></div>
       </div>
+
     </div>
 
-
-
-    <div ng-view></div>
-
-    <div>Angular seed app: v
-      <span app-version></span>
-    </div>
-
-    <div>my name is {{name}}</div>
-
-  </div>
-
-  <!-- In production use:
+    <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="app.js"></script>
-  <script src="view1/view1.js"></script>
-  <script src="view2/view2.js"></script>
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
-  <script src="bower_components/jQuery/dist/jquery.slim.min.js"></script>
-  <script src="bower_components/popper.js/dist/umd/popper.min.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
 </body>
 
 </html>

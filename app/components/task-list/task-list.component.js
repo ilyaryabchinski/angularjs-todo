@@ -3,22 +3,25 @@
 angular.module('taskList')
 .component("taskList",
 {
-    templateUrl: "task-list/task-list.template.html",
-    controller: function TaskListController (){
-        this.tasks = [
-            {
-                "title": "Build an AngularJS app", 
-                "description": "Practice!", 
-                "deadline": "2017-02-01",
-                "isDone": false 
-            }, 
-            {
-                "title": "Buy a new T-Shirt", 
-                "description": "My old T-shirts are old-fashioned", 
-                "deadline": "2017-03-01",
-                "isDone": false
-            }
-        ];
-        this.orderProp = 'title';
+    templateUrl: "components/task-list/task-list.template.html",
+    controller: function TaskListController ($http, $scope, factory){
+        $scope.factory = factory;
+
+        $http.get("http://localhost:8000/list").
+        success(function (result) {
+            console.log(result);
+            $scope.tasks = result;
+        }).
+        error(function (result) {
+            console.log("Error: " + result);
+        });
+
+        this.orderProp = 'deadline';
+
     }
+}).
+factory("factory", function(){
+  return {
+    searchQuery: ""
+  };
 });

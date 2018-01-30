@@ -31,8 +31,8 @@
 <div class="cards col-9">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-4" ng-repeat="task in $ctrl.tasks | filter:factory.searchQuery | orderBy:$ctrl.orderProp">
-          <div class="card text-center">
+        <div class="col-4 mt-3" ng-repeat="task in $ctrl.tasks | filter:factory.searchQuery | orderBy:$ctrl.orderProp">
+          <div class="card text-center" ng-click="done()" ng-class="{'bg-success': task.isDone}">
             <div class="card-header">
               Deadline: {{ task.deadline | date:'medium' }}
             </div>

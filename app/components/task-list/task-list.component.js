@@ -5,11 +5,12 @@ app.component("taskList", {
     templateUrl: "components/task-list/task-list.template.html",
     controller: function TaskListController($http, $scope, factory) {
         $scope.factory = factory;
+        $scope.isDone = false;
 
         this.orderProp = 'deadline';
         var self = this;
 
-        $http.get("/tasks/tasks.json").
+        $http.get("http://localhost:3000/tasks").
         then(function onSuccess(result) {
                 self.tasks = result.data;
             },
@@ -20,16 +21,25 @@ app.component("taskList", {
         $scope.sendData = function () {
 
             var task = $scope.task;
+            task.isDone = false;
 
-            $http.post("/tasks/tasks.json", task).
+            $http.post("http://localhost:3000/tasks", task).
             then(function onSuccess(result) {
                     console.log("Task was successfully added!");
+                    self.tasks.push(task);
                 },
                 function onError(params) {
                     console.log("Can't add new Task!");
                 }
             );
 
+        }
+
+
+        $scope.done = function () {
+            var task = this.task;
+            task.isDone = true;
+            console.log(task)
         }
 
     }

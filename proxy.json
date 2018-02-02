@@ -1,0 +1,17 @@
+{
+  "server": {
+    "port": 3000,
+    "webroot": "$config_dir"
+  },
+  "proxy": {
+    "forward": {
+      "/bower_components/(.*)": "http://localhost:3000/",
+      "/backend/api/(.*)": "http://localhost:3000/tasks/$1",
+      "/\\s*": "http://localhost:3000/src"
+      
+    },
+    "headers": {
+      "X-Remote-User": "John Doe"
+    }
+  }
+}

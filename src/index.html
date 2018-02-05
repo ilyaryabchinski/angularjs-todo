@@ -21,7 +21,7 @@
 
 </head>
 
-<body ng-controller="MainController" class="alpha-60" >
+<body ng-controller="MainController as main" class="alpha-60" >
   <div class="container">
     <div class="row">
       <nav class="navbar navbar-dark bg-dark col-12">
@@ -30,7 +30,7 @@
           AnotherOneToDoApp
         </a>
         <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" ng-model="factory.searchQuery">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" ng-model="main.searchQuery">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled>Search</button>
         </form>
       </nav>
@@ -62,8 +62,10 @@
   <script src="../bower_components/angular-mocks/angular-mocks.js"></script>
   <script src="app/core/task.module.js"></script>
   <script src="app/core/task.service.js"></script>
-  <script src="app/components/tasks/task-list.module.js"></script>
-  <script src="app/components/tasks/task-list.component.js"></script>
+  <script src="app/tasks/task-list.module.js"></script>
+  <script src="app/tasks/task-list.component.js"></script>
+  <script src="app/tasks/task-list.controller.js"></script>
+  <script src="app/tasks/task-list.factory.js"></script>
   <script src="app.js"></script>
   <script src="../bower_components/jQuery/dist/jquery.slim.min.js"></script>
   <script src="../bower_components/popper.js/dist/umd/popper.min.js"></script>

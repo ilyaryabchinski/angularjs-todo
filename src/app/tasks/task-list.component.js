@@ -123,6 +123,7 @@
       templateUrl: '/app/tasks/task-list.template.html',
       controller: 'TaskListController',
       controllerAs: '$ctrl',
+        bindToController: true,
       bindings: {
         Binding: '=',
       },

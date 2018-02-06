@@ -5,7 +5,7 @@
         .module("taskList")
         .controller("TaskListController", TaskListController);
 
-    TaskListController.$inject = ["$http", "Task"];
+    TaskListController.$inject = ["$http", "Task", "SearchQueryService"];
 
     function TaskListController($http, Task) {
         var vm = this;
@@ -37,9 +37,7 @@
             });
         }
 
-        function sendData() {
-            console.log(this);
-            var task = vm.task;
+        function sendData(task) {
             task.isDone = false;
 
             Task.post(task).then(function (result) {
@@ -47,10 +45,8 @@
             });
         }
 
-        function done($event) {
+        function done($event, task) {
             $event.stopPropagation();
-            var task = vm.task;
-
             task.isDone = task.isDone ? false : true;
             Task.update(task.id, {
                 isDone: task.isDone
@@ -81,13 +77,12 @@
             });
         }
 
-        function editTask() {
-            vm.editTask = vm.task;
-            console.log(vm.task);
+        function editTask(task) {
+            vm.editTask = task;
         }
 
         function deleteTask() {
-            console.log(this.editTask);
+            console.log(vm.editTask);
             var id = this.editTask.id,
                 oldTasks = vm.tasks;
             vm.tasks = [];
@@ -101,21 +96,21 @@
             });
         }
 
-        function updateTask() {
-            var newTask = this.editTask,
+        function updateTask(newData) {
+            var changedTask = vm.editTask,
                 oldTasks = vm.tasks;
             vm.tasks = [];
 
-            newTask = Object.assign(newTask, this.task);
+            changedTask = Object.assign(changedTask, newData);
 
-            console.log(newTask);
+            console.log(changedTask);
 
             angular.forEach(oldTasks, function (task) {
-                if (task.id != newTask.id) {
+                if (task.id != changedTask.id) {
                     vm.tasks.push(task);
                 } else {
-                    Task.update(newTask.id, newTask);
-                    vm.tasks.push(newTask);
+                    Task.update(changedTask.id, changedTask);
+                    vm.tasks.push(changedTask);
                 }
             });
         }

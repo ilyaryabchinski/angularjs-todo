@@ -32,15 +32,15 @@
     <div class="cards col-9">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-4 mt-3" ng-repeat="task in $ctrl.tasks | filter:$ctrl.SearchQueryService.searchQuery | orderBy:$ctrl.orderProp">
-            <div class="card text-center" ng-class="{'bg-success': task.isDone}">
+          <div class="col-4 mt-3" ng-repeat="task in $ctrl.tasks | filter:SearchQueryService.searchQuery | orderBy:$ctrl.orderProp" ng-model="task">
+            <div class="card text-center" ng-class="{'bg-success': task.isDone}"">
               <div class="card-header">
                 Deadline: {{ task.deadline | date:'medium' }}
               </div>
-              <div class="card-body" aria-pressed="true" data-toggle="modal" data-target="#exampleModalEdit" ng-click="$ctrl.edit()">
+              <div class="card-body" aria-pressed="true" data-toggle="modal" data-target="#exampleModalEdit" ng-click="$ctrl.edit(task)">
                 <h5 class="card-title">{{ task.title }}</h5>
                 <p class="card-text">{{ task.description }}</p>
-                <a href="#" class="btn btn-success" ng-click="$ctrl.done($event)">Done!</a>
+                <a href="#" class="btn btn-success" ng-click="$ctrl.done($event, task)">Done!</a>
               </div>
             </div>
           </div>
@@ -74,7 +74,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="$ctrl.sendData()">Submit</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="$ctrl.sendData(task)">Submit</button>
             </div>
           </form>
         </div>
@@ -97,20 +97,20 @@
         <form>
           <div class="form-group">
             <label class="col-form-label">Title:</label>
-            <input type="text" class="form-control" ng-model="task.title" ng-value="editTask.title">
+            <input type="text" class="form-control" ng-model="task.title" ng-value="$ctrl.editTask.title">
           </div>
           <div class="form-group">
             <label class="col-form-label">Deadline:</label>
-            <input type="date" class="form-control" ng-model="task.deadline" ng-value="editTask.deadline">
+            <input type="date" class="form-control" ng-model="task.deadline" ng-value="$ctrl.editTask.deadline">
           </div>
           <div class="form-group">
             <label for="description-text" class="col-form-label">Description:</label>
-            <textarea class="form-control" id="description-text" ng-model="task.description" ng-value="editTask.description"></textarea>
+            <textarea class="form-control" id="description-text" ng-model="task.description" ng-value="$ctrl.editTask.description"></textarea>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="$ctrl.delete()">Delete</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="$ctrl.update()">Submit</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="$ctrl.update(task)">Submit</button>
           </div>
         </form>
       </div>

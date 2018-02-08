@@ -22,7 +22,7 @@
         <li>
           <p class="mt-3">
             Sort by:
-            <select ng-model="$ctrl.orderProp">
+            <select ng-model="$ctrl.defaultSort" >
               <option value="title">Alphabetical</option>
               <option value="deadline">Newest</option>
             </select>
@@ -32,8 +32,8 @@
     <div class="cards col-9">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-4 mt-3" ng-repeat="task in $ctrl.tasks | filter:SearchQueryService.searchQuery | orderBy:$ctrl.orderProp" ng-model="task">
-            <div class="card text-center" ng-class="{'bg-success': task.isDone}"">
+          <div class="col-4 mt-3" ng-repeat="task in $ctrl.tasks | filter:{title:$ctrl.sQuery.searchQuery} | orderBy:$ctrl.orderProp">
+            <!-- <div class="card text-center" ng-class="{'bg-success': task.isDone}">
               <div class="card-header">
                 Deadline: {{ task.deadline | date:'medium' }}
               </div>
@@ -41,8 +41,9 @@
                 <h5 class="card-title">{{ task.title }}</h5>
                 <p class="card-text">{{ task.description }}</p>
                 <a href="#" class="btn btn-success" ng-click="$ctrl.done($event, task)">Done!</a>
-              </div>
-            </div>
+              </div> -->
+            <!-- </div> -->
+            <task-item task="task"></task-item>
           </div>
         </div>
       </div>
@@ -62,11 +63,11 @@
           <form>
             <div class="form-group">
               <label class="col-form-label">Title:</label>
-              <input type="text" class="form-control" ng-model="task.title">
+              <input type="text" class="form-control" ng-model="task.title" >
             </div>
             <div class="form-group">
               <label class="col-form-label">Deadline:</label>
-              <input type="date" class="form-control" ng-model="task.deadline">
+              <input type="date" class="form-control" ng-model="task.deadline" ng-value="$ctrl.defaultDeadline">
             </div>
             <div class="form-group">
               <label for="description-text" class="col-form-label">Description:</label>

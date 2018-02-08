@@ -4,7 +4,8 @@
   angular
     .module('tasksApp', [
       'core.task',
-      'taskList'
+      'taskList',
+      'taskItem'
     ])
     .config(configure)
     .controller("MainController", MainController);
@@ -12,9 +13,10 @@
   MainController.$inject = ['SearchQueryService'];
   configure.$inject = ['$locationProvider']
 
-  function MainController(SearchQueryService) {
+  function MainController(searchQueryService) {
     var vm = this;
-    vm.searchQuery = SearchQueryService.searchQuery;
+    vm.searchQueryService = searchQueryService;
+
 
   };
 

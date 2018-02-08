@@ -1,0 +1,10 @@
+<div class="card text-center" ng-class="{'bg-success': $ctrl.task.isDone}">
+    <div class="card-header">
+      Deadline: {{ $ctrl.task.deadline | date:'medium' }}
+    </div>
+    <div class="card-body" aria-pressed="true" data-toggle="modal" data-target="#exampleModalEdit" ng-click="$ctrl.parentCtrl.edit($ctrl.task)">
+      <h5 class="card-title">{{ $ctrl.task.title }}</h5>
+      <p class="card-text">{{$ctrl.task.description }}</p>
+      <a href="#" class="btn btn-success" ng-click="$ctrl.parentCtrl.done($event, $ctrl.task)">Done!</a>
+    </div>
+</div>

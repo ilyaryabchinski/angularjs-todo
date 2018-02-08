@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('taskList', ['core.task']);
+    angular.module('taskList', ['core.task', 'taskItem']);
 
 })();
 

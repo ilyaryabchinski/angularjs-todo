@@ -7,7 +7,7 @@
 
     TaskListController.$inject = ["$http", "Task", "SearchQueryService"];
 
-    function TaskListController($http, Task) {
+    function TaskListController($http, Task, searchQueryService) {
         var vm = this;
 
         vm.sendData = sendData;
@@ -17,9 +17,10 @@
         vm.edit = editTask;
         vm.delete = deleteTask;
         vm.update = updateTask;
+        vm.sQuery = searchQueryService;
 
         vm.isDone = false;
-        vm.tasks = [];
+        // vm.tasks = [];
 
         activate();
 
@@ -29,10 +30,16 @@
             return getTasks().then(function (result) {
                 console.log("Tasks has been successfully recieved");
             });
+            
+            
         }
 
         function getTasks() {
+            
             return Task.getAll().then(function (result) {
+                // if (vm.defaultTasks) {
+                //     vm.tasks = vm.defaultTasks;
+                // } else vm.tasks = result;
                 vm.tasks = result;
             });
         }
@@ -51,9 +58,11 @@
             Task.update(task.id, {
                 isDone: task.isDone
             });
+            
         }
 
         function allDone() {
+            //vm.onAllTasksDone();
             var i = 0,
                 length = vm.tasks.length;
 
@@ -63,6 +72,7 @@
                     isDone: vm.tasks[i].isDone
                 });
             }
+    
         }
 
         function deleteCompleted() {

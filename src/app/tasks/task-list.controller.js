@@ -18,9 +18,11 @@
         vm.delete = deleteTask;
         vm.update = updateTask;
         vm.sQuery = searchQueryService;
+        vm.alertFunc = alertFunc;
+ 
 
         vm.isDone = false;
-        // vm.tasks = [];
+
 
         activate();
 
@@ -30,12 +32,14 @@
             return getTasks().then(function (result) {
                 console.log("Tasks has been successfully recieved");
             });
-            
-            
+               
+        }
+
+        function alertFunc() {
+            alert('Well Done!');
         }
 
         function getTasks() {
-            
             return Task.getAll().then(function (result) {
                 // if (vm.defaultTasks) {
                 //     vm.tasks = vm.defaultTasks;
@@ -57,12 +61,24 @@
             task.isDone = task.isDone ? false : true;
             Task.update(task.id, {
                 isDone: task.isDone
+            }).then(function (result) {
+                if(checkAllDone()) vm.onAllTasksDone();
             });
+            
             
         }
 
+        function checkAllDone(){
+            var i = 0,
+                length = vm.tasks.length;
+            for (i; i < length; i++){
+                if(!vm.tasks[i].isDone) return false;               
+            }
+            return true;
+        }
+
         function allDone() {
-            //vm.onAllTasksDone();
+            
             var i = 0,
                 length = vm.tasks.length;
 
@@ -72,6 +88,7 @@
                     isDone: vm.tasks[i].isDone
                 });
             }
+            if(checkAllDone()) vm.onAllTasksDone();
     
         }
 

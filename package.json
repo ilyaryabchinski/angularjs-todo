@@ -21,7 +21,7 @@
     "update-deps": "npm update",
     "postupdate-deps": "bower update",
     "prestart": "npm install",
-    "start": "concurrently \"json-server tasks.json --static ./\" \"json-proxy -c proxy.json\" ",
+    "start": "concurrently \"node ./node_modules/json-server/bin/index.js tasks.json --static ./\" \"node ./node_modules/json-proxy/bin/json-proxy -c proxy.json\" ",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",
